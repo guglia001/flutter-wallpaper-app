@@ -52,7 +52,7 @@ class Src {
     String small;
 
     factory Src.fromJson(Map<String, dynamic> json) => Src(
-        original: json["original"],
+        original: json["large2x"],
         medium: json["medium"],
         small: json["small"],
     );

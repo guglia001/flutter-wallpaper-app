@@ -1,16 +1,22 @@
-# wallpaper_dope
+# Flutter Wallpaper hype
 
-A new Flutter project.
+My first flutter app (currently in beta)
 
-## Getting Started
+## Wallpaper app
 
-This project is a starting point for a Flutter application.
+I created a database with bloc patron to allow the people save any wallpaper, i made localizations for english and spanish
 
-A few resources to get you started if this is your first Flutter project:
+My aplication uses firebase to allow the people **upload their own wallpapers**, like others wallpapers and etc
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+I used these two apis:
+* Unsplash api
+* Pexels api
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+[Google play URL](http://github.com)
+
+
+![](https://res.cloudinary.com/dr7sntabv/image/upload/v1601806335/Screenshot_1_yruzjn.png) ![](https://res.cloudinary.com/dr7sntabv/image/upload/v1601806335/Screenshot_2_io6hp4.png)
+![](https://res.cloudinary.com/dr7sntabv/image/upload/v1601806335/Screenshot_4_jf6z3h.png)
+![](https://res.cloudinary.com/dr7sntabv/image/upload/v1601806335/Screenshot_3_angfyl.png)
+![](https://res.cloudinary.com/dr7sntabv/image/upload/v1601806335/Screenshot_5_s3wde5.png)
