@@ -19,14 +19,14 @@ class _SavedPageState extends State<SavedPage> {
         stream: dbBloc.dbStrem,
         builder: (context, AsyncSnapshot<List<DBModel>> snapshot) {
           if (!snapshot.hasData) {
-            return Center(child: CircularProgressIndicator());
+            return Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(ThemeData.dark().colorScheme.primary)));
           }
           final scans = snapshot.data;
 
           if (scans.length == 0) {
             return Center(
               child: Text(AppLocalizations.of(context).translate('dbmain'), style: GoogleFonts.ptSans(
-                color: Colors.white.withOpacity(0.4),
+                color: Colors.black.withOpacity(0.4),
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
               ),),

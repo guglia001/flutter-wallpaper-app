@@ -56,7 +56,7 @@ class HomeBuilder extends StatelessWidget {
             child: Text(
               category,
               style: GoogleFonts.ptSans(
-                color: Colors.white.withOpacity(0.9),
+                color: Colors.black.withOpacity(0.9),
                 fontSize: 23,
                 fontWeight: FontWeight.w700,
               ),
@@ -76,7 +76,7 @@ class HomeBuilder extends StatelessWidget {
               }
             });
             if (!snapshot.hasData) {
-              return Center(child: CircularProgressIndicator());
+              return Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(ThemeData.dark().colorScheme.primary)));
             }
             final imagen = snapshot.data;
             return ClipRRect(
@@ -124,7 +124,7 @@ class HomeBuilder extends StatelessWidget {
                                                         .expectedTotalBytes
                                                 : null,
                                             valueColor: AlwaysStoppedAnimation(
-                                                Color(0xFF6A040F)),
+                                                ThemeData.dark().colorScheme.primary),
                                             backgroundColor: Color(0xFF006E),
                                             borderColor: Color(0xFB5607),
                                             borderWidth: 5.0,

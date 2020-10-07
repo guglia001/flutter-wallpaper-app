@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'package:provider/provider.dart';
+import 'package:random_color_scheme/random_color_scheme.dart';
 import 'package:wallpaper_dope/src/localizations.dart';
 import 'package:wallpaper_dope/src/models/uploads_model.dart';
 import 'package:wallpaper_dope/src/pages/page_controller.dart';
@@ -12,7 +13,13 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:wallpaper_dope/src/providers/trending_provider.dart';
 import 'package:wallpaper_dope/src/providers/uploads_provider.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(Theme(
+      data: ThemeData(
+        colorScheme: randomColorSchemeDark(),
+      ),
+      child: MyApp()));
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -51,4 +58,4 @@ class MyApp extends StatelessWidget {
         });
   }
 }
-//TODO: arreglar al poner el fondo de pantalla se buguea , demora mucho poner loading screens 
+//TODO: arreglar al poner el fondo de pantalla se buguea , demora mucho poner loading screens

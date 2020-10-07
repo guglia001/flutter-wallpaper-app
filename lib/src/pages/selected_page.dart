@@ -3,7 +3,6 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:dio/dio.dart';
-import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -44,23 +43,9 @@ class SelectedWallpaper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    FirebaseAdMob.instance
-        .initialize(appId: "ca-app-pub-4476745438283982~6573880191");
 
     final size = MediaQuery.of(context).size;
 
-    MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
-      childDirected: false,
-      testDevices: <String>[
-        "6C081232C5994B872D0BAE577176788A"
-      ], 
-    );
-
-    final _interestialAD = InterstitialAd(
-      adUnitId: 'ca-app-pub-4476745438283982/1137736598',
-      targetingInfo: targetingInfo,   listener: (MobileAdEvent event) {
-    print("InterstitialAd event is $event");
-  },);
 
     final provider = Provider.of<UploadsProvider>(context);
 
@@ -200,7 +185,6 @@ class SelectedWallpaper extends StatelessWidget {
                         RawMaterialButton(
                           onPressed: () async {
                             provider.loadingMain = true;
-                           _interestialAD..load()..show(anchorType: AnchorType.bottom, anchorOffset: 0.0, horizontalCenterOffset: 0.0,);
                             Random random = new Random();
                             Directory directorio =
                                 await getApplicationDocumentsDirectory();

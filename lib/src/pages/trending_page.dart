@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
 import 'package:provider/provider.dart';
@@ -16,28 +17,33 @@ class TrendingPage extends StatelessWidget {
         stream: provider.pageStream,
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
-            return Center(child: CircularProgressIndicator());
+            return Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(ThemeData.dark().colorScheme.primary)));
           }
           final image = snapshot.data;
-          final _gridController = new SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              crossAxisSpacing: 8.0,
-              mainAxisSpacing: 10.0,
-              childAspectRatio: 0.65);
+          // final _gridController = new SliverGridDelegateWithFixedCrossAxisCount(
+          //     crossAxisCount: 3,
+          //     crossAxisSpacing: 8.0,
+          //     mainAxisSpacing: 10.0,
+          //     childAspectRatio: 0.65);
           final _controller = new PageController(initialPage: 1);
           _controller.addListener(() {
             if (_controller.position.pixels >=
-                  _controller.position.maxScrollExtent -200) {
-                return provider.searchTrendy();
-              }
-           });
+                _controller.position.maxScrollExtent - 200) {
+              return provider.searchTrendy();
+            }
+          });
 
           return Padding(
-            padding: const EdgeInsets.all(15),
-            child: GridView.builder(
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            child: StaggeredGridView.countBuilder(
               controller: _controller,
-              gridDelegate: _gridController,
+              crossAxisCount: 3,
+              // shrinkWrap: true,
               itemCount: provider.page.length,
+              mainAxisSpacing: 4.0,
+              crossAxisSpacing:4.0,
+              staggeredTileBuilder: (int index) =>
+                  new StaggeredTile.count(1, 2),
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () {
@@ -54,6 +60,7 @@ class TrendingPage extends StatelessWidget {
                     );
                   },
                   child: Container(
+                    height: 100,
                     decoration: BoxDecoration(
                       boxShadow: [
                         BoxShadow(
@@ -75,13 +82,14 @@ class TrendingPage extends StatelessWidget {
                                       loadingProgress.expectedTotalBytes
                                   : null,
                               valueColor:
-                                  AlwaysStoppedAnimation(Color(0xFF6A040F)),
+                                  AlwaysStoppedAnimation(ThemeData.dark().colorScheme.primary),
                               backgroundColor: Color(0xFF006E),
                               borderColor: Color(0xFB5607),
                               borderWidth: 5.0,
                               direction: Axis.vertical,
                               center: Text(
-                                AppLocalizations.of(context).translate('loading'),
+                                AppLocalizations.of(context)
+                                    .translate('loading'),
                                 style: GoogleFonts.ptSans(
                                   color: Colors.white.withOpacity(0.6),
                                   fontSize: 12,
@@ -90,7 +98,9 @@ class TrendingPage extends StatelessWidget {
                               ),
                             );
                           },
-                          image: NetworkImage(image[index].src.medium)),
+                          image: NetworkImage(image[index].src.medium),
+                          fit: BoxFit.fitHeight,
+                          ),
                     ),
                   ),
                 );

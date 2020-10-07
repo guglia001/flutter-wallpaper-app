@@ -31,18 +31,11 @@ class UploadForm extends StatelessWidget {
           Container(
               height: 700,
               width: size.width,
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      begin: Alignment.center,
-                      end: Alignment.bottomRight,
-                      colors: [
-                    Color(0xFF6A040F),
-                    Color(0xFF370617),
-                    Color(0xFF03071E),
-                  ]))),
+              decoration:
+                  BoxDecoration(color: ThemeData.dark().colorScheme.primary)),
           Theme(
             data: ThemeData(
-                primaryColor: Colors.white, primaryColorDark: Colors.white),
+                primaryColor: Colors.black, primaryColorDark: Colors.black),
             child: ListView(
               shrinkWrap: true,
               children: [
@@ -54,7 +47,7 @@ class UploadForm extends StatelessWidget {
                         iconSize: 32,
                         icon: Icon(
                           Ionicons.ios_close,
-                          color: Colors.white,
+                          color: Colors.black,
                         ),
                         onPressed: () {
                           Navigator.pop(context);
@@ -68,7 +61,7 @@ class UploadForm extends StatelessWidget {
                     style: GoogleFonts.hind(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white),
+                        color: Colors.black),
                   ),
                 ),
                 Padding(
@@ -89,59 +82,57 @@ class UploadForm extends StatelessWidget {
                 ),
                 TextFormField(
                   controller: _author,
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.black),
                   decoration: InputDecoration(
                       border: new OutlineInputBorder(
-                          borderSide: new BorderSide(color: Colors.white)),
-                      fillColor: Colors.white,
-                      hoverColor: Colors.white,
-                      focusColor: Colors.white,
+                          borderSide: new BorderSide(color: Colors.black)),
+                      fillColor: Colors.black,
+                      hoverColor: Colors.black,
+                      focusColor: Colors.black,
                       prefixIcon:
-                          Icon(FontAwesome.user, size: 18, color: Colors.white),
+                          Icon(FontAwesome.user, size: 18, color: Colors.black),
                       labelStyle: GoogleFonts.ptSans(
                           fontSize: 15,
                           fontWeight: FontWeight.w700,
-                          color: Colors.white),
+                          color: Colors.black),
                       labelText: "Author:"),
                 ),
                 TextFormField(
                   controller: _instagram,
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.black),
                   decoration: InputDecoration(
                       prefixIcon: Icon(AntDesign.instagram,
-                          size: 18, color: Colors.white),
+                          size: 18, color: Colors.black),
                       labelStyle: GoogleFonts.ptSans(
                           fontSize: 15,
                           fontWeight: FontWeight.w700,
-                          color: Colors.white),
+                          color: Colors.black),
                       labelText: "Instagram:"),
                 ),
                 TextFormField(
                   controller: _date,
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.black),
                   decoration: InputDecoration(
                       enabled: false,
                       prefixIcon:
-                          Icon(Entypo.calendar, size: 18, color: Colors.white),
+                          Icon(Entypo.calendar, size: 18, color: Colors.black),
                       labelStyle: GoogleFonts.ptSans(
                           fontSize: 15,
                           fontWeight: FontWeight.w700,
-                          color: Colors.white),
+                          color: Colors.black),
                       labelText: "Date:"),
                 ),
-
-          
                 AnimatedIconButton(
                   size: 50,
                   tooltip: "Upload Wallpaper",
                   duration: Duration(milliseconds: 500),
                   startIcon: Icon(
                     MaterialCommunityIcons.cloud_upload,
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                   endIcon: Icon(
                     MaterialIcons.cloud_done,
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                   onPressed: () async {
                     await provider.subirImagen();

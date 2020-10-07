@@ -4,7 +4,7 @@ description: A new Flutter project.
 
 publish_to: 'none' 
 
-version: 5.2.2+7
+version: 6.2.2+8.1
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -38,11 +38,10 @@ dependencies:
   url_launcher: 
   like_button: ^1.0.1
   custom_splash: ^0.0.2
-  firebase_admob: ^0.10.0-dev.1
   cached_network_image: ^2.3.1
   adaptive_dialog: ^0.7.5+3
   flutter_staggered_grid_view: ^0.3.2
-  flutter_native_admob: ^2.1.0+3
+  random_color_scheme: ^0.0.1
 
 
 

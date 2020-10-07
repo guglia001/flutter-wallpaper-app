@@ -1,7 +1,5 @@
-import 'dart:async';
-import 'dart:math';
+
 import 'dart:ui';
-import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';
@@ -15,33 +13,6 @@ class ControllerPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final index = Provider.of<BottomNavigationBarProvider>(context);
-    FirebaseAdMob.instance
-        .initialize(appId: "ca-app-pub-4476745438283982~6573880191");
-
-     _showAd() {
-      MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
-        childDirected: false,
-        testDevices: <String>["6C081232C5994B872D0BAE577176788A"],
-      );
-
-      final _interestialAD = InterstitialAd(
-        adUnitId: 'ca-app-pub-4476745438283982/7883445056',
-        targetingInfo: targetingInfo,
-        listener: (MobileAdEvent event) {
-          print("InterstitialAd event is $event");
-        },
-      );
-     return _interestialAD
-        ..load()
-        ..show(
-          anchorType: AnchorType.bottom,
-          anchorOffset: 0.0,
-          horizontalCenterOffset: 0.0,
-        );
-    }
-    Timer.periodic(Duration(seconds: 200), (timer) {_showAd();});
-
-
     var currentTab = [
       TrendingPage(),
       UploadsPage(),
@@ -51,7 +22,6 @@ class ControllerPage extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       body: Stack(children: <Widget>[
-        
         background(size),
         currentTab[index.currentIndex],
         Align(alignment: Alignment.bottomCenter, child: BtnNavBar()),
@@ -64,14 +34,7 @@ class ControllerPage extends StatelessWidget {
         height: size.height,
         width: size.width,
         decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomRight,
-             colors:[
-              Color(0xFF6A040F),
-              Color(0xFF370617),
-              Color(0xFF03071E),
-            ])));
+           color: ThemeData.dark().colorScheme.secondary));
   }
 }
 
@@ -90,7 +53,7 @@ class BtnNavBar extends StatelessWidget {
             filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
             child: Container(
               width: double.infinity,
-              color: Color(0xff9D0208).withOpacity(0.6),
+              color: ThemeData.dark().colorScheme.primary.withOpacity(0.6),
               height: 60,
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
@@ -100,8 +63,8 @@ class BtnNavBar extends StatelessWidget {
                     IconButton(
                         icon: Icon(Feather.trending_up,
                             color: index.currentIndex == 0
-                                ? Colors.white.withOpacity(0.5)
-                                : Colors.black),
+                                ? ThemeData.dark().accentColor
+                                : ThemeData.dark().bottomAppBarColor),
                         onPressed: () {
                           index.currentIndex = 0;
                         }),
@@ -109,8 +72,8 @@ class BtnNavBar extends StatelessWidget {
                         iconSize: 28,
                         icon: Icon(Ionicons.ios_people,
                             color: index.currentIndex == 1
-                                ? Colors.white.withOpacity(0.5)
-                                : Colors.black),
+                                ? ThemeData.dark().accentColor
+                                : ThemeData.dark().bottomAppBarColor),
                         onPressed: () {
                           index.currentIndex = 1;
                         }),
@@ -118,8 +81,8 @@ class BtnNavBar extends StatelessWidget {
                         icon: Icon(
                           FontAwesome.photo,
                           color: index.currentIndex == 2
-                              ? Colors.white.withOpacity(0.5)
-                              : Colors.black,
+                              ? ThemeData.dark().accentColor
+                              : ThemeData.dark().bottomAppBarColor,
                         ),
                         onPressed: () {
                           index.currentIndex = 2;
@@ -127,8 +90,8 @@ class BtnNavBar extends StatelessWidget {
                     IconButton(
                         icon: Icon(Feather.bookmark,
                             color: index.currentIndex == 3
-                                ? Colors.white.withOpacity(0.5)
-                                : Colors.black),
+                                ? ThemeData.dark().accentColor
+                                : ThemeData.dark().bottomAppBarColor),
                         onPressed: () {
                           index.currentIndex = 3;
                         }),

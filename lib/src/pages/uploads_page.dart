@@ -23,7 +23,15 @@ class UploadsPage extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.done) {
             return Stack(
               children: [
-                UploadsGrid().build(context),
+                Column(
+                  children: [
+                    Expanded
+                    (child: UploadsGrid().build(context)),
+                    SizedBox(
+                      height: 50,
+                    )
+                  ],
+                ),
                 Positioned(
                     bottom: 100,
                     right: 35,
@@ -35,7 +43,7 @@ class UploadsPage extends StatelessWidget {
                         );
                       },
                       elevation: 2.0,
-                      fillColor: Colors.redAccent.withOpacity(0.9),
+                      fillColor: ThemeData.dark().colorScheme.primary.withOpacity(0.5),
                       child: Icon(
                         Entypo.upload,
                         size: 22.0,
@@ -46,7 +54,7 @@ class UploadsPage extends StatelessWidget {
               ],
             );
           }
-          return Center(child: CircularProgressIndicator());
+          return Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(ThemeData.dark().colorScheme.primary)));
         },
       ),
     );
@@ -61,10 +69,13 @@ class UploadsGrid extends StatelessWidget {
 
     //  int length = uploads.length = null ? 1 : uploads.length;
     if (uploads == null) {
-    return CircularProgressIndicator();
+      return CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(ThemeData.dark().colorScheme.primary));
     }
     return Padding(
-      padding: const EdgeInsets.only(top: 15, left: 15, right: 15, bottom: 70),
+      padding: const EdgeInsets.only(
+        left: 5,
+        right: 5,
+      ),
       child: GridView.builder(
         itemCount: uploads.length ??= 1,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
