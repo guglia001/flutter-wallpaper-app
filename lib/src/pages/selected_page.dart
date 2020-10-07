@@ -43,9 +43,7 @@ class SelectedWallpaper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final size = MediaQuery.of(context).size;
-
 
     final provider = Provider.of<UploadsProvider>(context);
 
@@ -67,14 +65,7 @@ class SelectedWallpaper extends StatelessWidget {
                           height: 700,
                           width: size.width,
                           decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomRight,
-                                 colors: [
-                                Color(0xFF6A040F),
-                                Color(0xFF370617),
-                                Color(0xFF03071E),
-                              ]))),
+                              color: ThemeData.dark().colorScheme.secondary)),
                       Center(
                           child: Container(
                         height: 150,
@@ -84,7 +75,7 @@ class SelectedWallpaper extends StatelessWidget {
                               ? loadingProgress.cumulativeBytesLoaded /
                                   loadingProgress.expectedTotalBytes
                               : null,
-                          valueColor: AlwaysStoppedAnimation(Color(0xFF6A040F)),
+                          valueColor: AlwaysStoppedAnimation(ThemeData.dark().colorScheme.secondary),
                           backgroundColor: Color(0xFF03071E),
                           borderColor: Color(0xFF006E),
                           borderWidth: 5.0,
@@ -194,6 +185,7 @@ class SelectedWallpaper extends StatelessWidget {
                             Dio dio = new Dio();
                             await dio.download(image, path);
                             showAlertDialog(context, path);
+                            provider.loadingMain = false;
                           },
                           child: Icon(
                             Entypo.download,
