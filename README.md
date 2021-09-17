@@ -1,4 +1,4 @@
-# Flutter Wallpaper hype
+# Flutter Wallpaper 
 
 My first flutter app (currently in beta)
 
